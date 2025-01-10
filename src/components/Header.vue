@@ -1,47 +1,59 @@
+<!-- src/components/Header.vue -->
 <template>
   <el-container>
     <el-header>
-      <div class="header">Header</div>
+      <div class="header">
+        <el-row>
+          <el-col :span="8"></el-col>
+          <!-- Các liên kết đến các trang -->
+          <el-col :span="2" class="nav-item">
+            <router-link to="/">Trang chủ</router-link>
+          </el-col>
+          <el-col :span="2" class="nav-item">
+            <router-link to="/products">Sản phẩm</router-link>
+          </el-col>
+          <el-col :span="2" class="nav-item">
+            <router-link to="/login">Đăng nhập</router-link>
+          </el-col>
+          <el-col :span="2" class="nav-item">
+            <router-link to="/contact">Liên hệ</router-link>
+          </el-col>
+          <el-col :span="8"></el-col>
+        </el-row>
+      </div>
     </el-header>
-    <el-main>
-      <el-row>
-        <el-col :span="1"><div class="content-box">Sidebar</div></el-col>
-        <el-col :span="11"><div class="content-box">Main Content</div></el-col>
-      </el-row>
-    </el-main>
-    <el-footer>
-      <div class="footer">Footer</div>
-    </el-footer>
   </el-container>
 </template>
 
-<script>
-import { ElContainer, ElHeader, ElMain, ElFooter, ElRow, ElCol } from 'element-plus'
-
-export default {
-  name: 'LayoutExample',
-  components: {
-    ElContainer,
-    ElHeader,
-    ElMain,
-    ElFooter,
-    ElRow,
-    ElCol
-  }
-}
+<script setup>
+import { ElContainer, ElHeader, ElRow, ElCol } from 'element-plus';
 </script>
 
 <style scoped>
-.header, .footer {
+.header {
   background-color: #333;
   color: white;
-  padding: 10px;
+  padding: 15px;
 }
 
-.content-box {
-  background-color: #f0f0f0;
-  padding: 20px;
+.nav-item {
   text-align: center;
-  border-radius: 5px;
+}
+
+/* CSS cho router-link */
+.nav-item a {
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+/* Hiệu ứng hover */
+.nav-item a:hover {
+  background-color: #555;
+  color: #00ff99;
+}
+
+/* Sửa CSS cho router-link để đảm bảo style được áp dụng */
+.nav-item a.router-link-active {
+  background-color: #333; /* Hoặc màu khác bạn muốn khi trang đang được chọn */
 }
 </style>

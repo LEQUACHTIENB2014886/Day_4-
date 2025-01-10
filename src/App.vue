@@ -1,28 +1,17 @@
+<!-- src/App.vue -->
 <template>
-  <div>
+  <div id="app">
     <Header />
-    <router-view /> <!-- Hiển thị trang dựa trên router -->
+    <router-view /> <!-- Đây là nơi các trang sẽ được hiển thị -->
     <Footer />
   </div>
 </template>
 
-<script>
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
-
-export default {
-  components: {
-    Header,
-    Footer
-  }
-}
+<script setup>
+import Header from './components/Header.vue'; // Import Header component
+import Footer from './components/Footer.vue';
 </script>
 
 <style>
-/* Cấu hình chung cho ứng dụng */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
+/* Thêm CSS nếu cần */
 </style>
