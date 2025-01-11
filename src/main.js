@@ -1,8 +1,7 @@
-// src/main.js
 import { createApp } from 'vue';
 import App from './App.vue';
-import router from './router'; // Import router từ thư mục router
+import router from './router/router';  // Đảm bảo import router đúng cách
 
 createApp(App)
-  .use(router)  // Cài đặt Vue Router vào ứng dụng
-  .mount('#app');  // Mount ứng dụng vào phần tử có id là 'app'
+  .use(router)  // Đảm bảo sử dụng router
+  .mount('#app');
