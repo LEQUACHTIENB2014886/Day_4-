@@ -2,47 +2,51 @@
   <el-container>
     <el-header class="header">
       <div class="header-content">
-        <div class="nav-item">
-          <el-icon>
-            <HomeFilled />
-          </el-icon>
-          <router-link to="/">
+        <router-link to="/" class="nav-item">
+          <div>
+            <el-icon>
+              <HomeFilled />
+            </el-icon>
             <span>Trang chủ</span>
-          </router-link>
-        </div>
+          </div>
+        </router-link>
 
-        <div class="nav-item">
-          <el-icon>
-            <Fold />
-          </el-icon>
-          <router-link to="/products">
+        <router-link to="/products" class="nav-item">
+          <div>
+            <el-icon>
+              <Fold />
+            </el-icon>
             <span>Sản phẩm</span>
-          </router-link>
-        </div>
-        <div class="nav-item">
-          <el-icon>
-            <User />
-          </el-icon>
-          <router-link to="/login">
+          </div>
+        </router-link>
+
+        <router-link to="/login" class="nav-item">
+          <div>
+            <el-icon>
+              <User />
+            </el-icon>
             <span>Đăng nhập</span>
-          </router-link>
-        </div>
-        <div class="nav-item">
-          <el-icon>
-            <ShoppingCart />
-          </el-icon>
-          <router-link to="/cart">
+          </div>
+        </router-link>
+
+        <router-link to="/cart" class="nav-item">
+          <div>
+            <el-icon>
+              <ShoppingCart />
+            </el-icon>
             <span>Giỏ hàng</span>
-          </router-link>
-        </div>
-        <div class="nav-item">
-          <el-icon>
-            <PhoneFilled />
-          </el-icon>
-          <router-link to="/contact">
+          </div>
+        </router-link>
+
+        <router-link to="/contact" class="nav-item">
+          <div>
+            <el-icon>
+              <PhoneFilled />
+            </el-icon>
             <span>Liên hệ</span>
-          </router-link>
-        </div>
+          </div>
+        </router-link>
+
         <div class="search-item">
           <el-input v-model="searchQuery" placeholder="Nhập từ khóa tìm kiếm" class="input-search">
             <template #prefix>
@@ -64,32 +68,21 @@ import {
   HomeFilled,
   ShoppingCart,
   User,
-  PhoneFilled
+  PhoneFilled,
+  Fold,
+  Search
 } from "@element-plus/icons-vue";
-import { Search } from "@element-plus/icons-vue";
 
 const searchQuery = ref("");
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
-
 .header {
   width: 100%;
   background: #333;
   color: white;
-  padding: 10px;
-  border-radius: 20px;
+  padding: 15px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,16 +93,24 @@ body {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: 7px 15px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
-    background-color 0.3s;
+    background-color 0.3s ease-in-out;
+  text-decoration: none;
+  color: white;
+  border-radius: 8px;
+}
+
+.nav-item div {
+  display: flex;
+  align-items: center;
 }
 
 .nav-item:hover {
@@ -129,23 +130,7 @@ body {
 }
 
 .nav-item:hover span {
-  color: #888;
-}
-
-.nav-item a {
-  text-decoration: none;
-}
-
-.nav-item a.router-link-active {
-  text-decoration: none;
-}
-
-.nav-item span {
-  transition: color 0.3s ease-in-out;
-}
-
-.nav-item:hover span {
-  color: white;
+  color: #ddd;
 }
 
 .search-item {
