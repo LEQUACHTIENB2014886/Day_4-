@@ -59,81 +59,29 @@ export default {
     ElCarouselItem
   },
   setup() {
-    // Mảng hình ảnh carousel
-    const images = [
-      {
-        src: "./src/assets/carosel/nike.jpg"
-      },
-      {
-        src: "./src/assets/carosel/adidas.jpg"
-      },
-      {
-        src: "./src/assets/carosel/puma.jpg"
-      },
-      {
-        src: "./src/assets/carosel/gucci.jpg"
-      },
-      {
-        src: "./src/assets/carosel/converse.jpg"
-      }
-    ];
-
-    // Mảng sản phẩm với tên, hình ảnh và 2 mức giá
-    const products = [
-      {
-        image: "./src/assets/products/1.jpg",
-        name: "Giày Nike Air Max",
-        originalPrice: "1,500,000 VND",
-        salePrice: "1,200,000 VND"
-      },
-      {
-        image: "./src/assets/products/2.jpg",
-        name: "Giày Adidas Ultraboost",
-        originalPrice: "2,000,000 VND",
-        salePrice: "1,700,000 VND"
-      },
-      {
-        image: "./src/assets/products/3.jpg",
-        name: "Giày Puma Future Rider",
-        originalPrice: "1,800,000 VND",
-        salePrice: "1,500,000 VND"
-      },
-      {
-        image: "./src/assets/products/4.jpg",
-        name: "Giày Converse Chuck Taylor",
-        originalPrice: "1,200,000 VND",
-        salePrice: "1,000,000 VND"
-      },
-      {
-        image: "./src/assets/products/5.jpg",
-        name: "Giày Gucci Ace",
-        originalPrice: "4,500,000 VND",
-        salePrice: "3,800,000 VND"
-      },
-      {
-        image: "./src/assets/products/6.jpg",
-        name: "Giày New Balance 990v5",
-        originalPrice: "3,000,000 VND",
-        salePrice: "2,500,000 VND"
-      },
-      {
-        image: "./src/assets/products/7.jpg",
-        name: "Giày Nike Air Force 1",
-        originalPrice: "1,800,000 VND",
-        salePrice: "1,500,000 VND"
-      },
-      {
-        image: "./src/assets/products/8.jpg",
-        name: "Giày Adidas NMD",
-        originalPrice: "2,200,000 VND",
-        salePrice: "1,900,000 VND"
-      }
-    ];
-
-    const timeLeft = ref("");
+    const images = ref([]);
+    const products = ref([]);
     const hours = ref("00");
     const minutes = ref("00");
     const seconds = ref("00");
+
+    const fetchCaroselImages = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/carosel");
+        images.value = await response.json();
+      } catch (error) {
+        console.error("Error fetching carousel images:", error);
+      }
+    };
+
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/products");
+        products.value = await response.json();
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
     const calculateTimeLeft = () => {
       const targetDate = new Date("2025-02-22T00:00:00");
@@ -141,10 +89,7 @@ export default {
       const difference = targetDate - currentDate;
 
       if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hrs = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
+        const hrs = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const secs = Math.floor((difference % (1000 * 60)) / 1000);
 
@@ -157,6 +102,8 @@ export default {
     };
 
     onMounted(() => {
+      fetchCaroselImages();
+      fetchProducts();
       calculateTimeLeft();
       setInterval(calculateTimeLeft, 1000);
     });
@@ -173,9 +120,9 @@ export default {
   padding: 10px;
   color: white;
   text-align: center;
-  border: 1px solid #ddd; /* Thêm viền nhỏ */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Viền nhẹ */
-  margin-bottom: 10px; /* Khoảng cách giữa các sản phẩm */
+  border: 1px solid #ddd;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 }
 
 .carousel-container {
@@ -185,7 +132,6 @@ export default {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  height: auto;
 }
 
 .carousel-item {
@@ -199,18 +145,6 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.caption {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
 }
 
 .sale-title {
@@ -244,11 +178,6 @@ export default {
   margin-bottom: 5px;
   width: 20px;
   text-align: center;
-  transition: transform 0.5s ease-in-out;
-}
-
-.time-box:hover {
-  transform: scale(1.1);
 }
 
 .product-image {
