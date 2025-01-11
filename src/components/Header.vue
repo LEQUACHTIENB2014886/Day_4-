@@ -6,28 +6,42 @@
           <el-icon>
             <HomeFilled />
           </el-icon>
-          <router-link to="/"><span>Trang chủ</span></router-link>
+          <router-link to="/">
+            <span>Trang chủ</span>
+          </router-link>
         </div>
+
         <div class="nav-item">
           <el-icon>
-            <ShoppingCart />
+            <Fold />
           </el-icon>
-          <router-link to="/cart"><span>Giỏ hàng</span></router-link>
-
+          <router-link to="/products">
+            <span>Sản phẩm</span>
+          </router-link>
         </div>
         <div class="nav-item">
           <el-icon>
             <User />
           </el-icon>
-          <router-link to="/login"><span>Đăng nhập</span></router-link>
-
+          <router-link to="/login">
+            <span>Đăng nhập</span>
+          </router-link>
+        </div>
+        <div class="nav-item">
+          <el-icon>
+            <ShoppingCart />
+          </el-icon>
+          <router-link to="/cart">
+            <span>Giỏ hàng</span>
+          </router-link>
         </div>
         <div class="nav-item">
           <el-icon>
             <PhoneFilled />
           </el-icon>
-          <router-link to="/contact"><span>Liên hệ</span></router-link>
-
+          <router-link to="/contact">
+            <span>Liên hệ</span>
+          </router-link>
         </div>
         <div class="search-item">
           <el-input v-model="searchQuery" placeholder="Nhập từ khóa tìm kiếm" class="input-search">
@@ -44,12 +58,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { ElContainer, ElHeader, ElInput, ElIcon } from 'element-plus';
-import { HomeFilled, ShoppingCart, User, PhoneFilled } from '@element-plus/icons-vue';
-import { Search } from '@element-plus/icons-vue';
+import { ref } from "vue";
+import { ElContainer, ElHeader, ElInput, ElIcon } from "element-plus";
+import {
+  HomeFilled,
+  ShoppingCart,
+  User,
+  PhoneFilled
+} from "@element-plus/icons-vue";
+import { Search } from "@element-plus/icons-vue";
 
-const searchQuery = ref('');
+const searchQuery = ref("");
 </script>
 
 <style scoped>
@@ -89,6 +108,15 @@ body {
   align-items: center;
   padding: 10px 15px;
   cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    background-color 0.3s;
+}
+
+.nav-item:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: #444;
 }
 
 .nav-item span {
@@ -97,17 +125,27 @@ body {
   text-transform: uppercase;
   color: white;
   margin-left: 8px;
-  /* Cách chữ và icon ra một chút */
-}
-
-.nav-item:hover {
-  opacity: 0.8;
-}
-
-.nav-item span:hover {
-  color: #888;
-  /* Màu xám tối khi hover */
   transition: color 0.3s ease-in-out;
+}
+
+.nav-item:hover span {
+  color: #888;
+}
+
+.nav-item a {
+  text-decoration: none;
+}
+
+.nav-item a.router-link-active {
+  text-decoration: none;
+}
+
+.nav-item span {
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-item:hover span {
+  color: white;
 }
 
 .search-item {
@@ -133,4 +171,5 @@ body {
 
 .input-search .el-input__inner:hover::placeholder {
   color: #aaa;
-}</style>
+}
+</style>
