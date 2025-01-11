@@ -2,13 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Contact from '../views/Contact.vue';
 import Login from '../views/Login.vue';
-import Products from '../views/Products.vue';
+import Cart from '../views/Cart.vue';
 
 const routes = [
-  { path: '/home', component: Home },
+  { path: '/', component: Home },
   { path: '/contact', component: Contact },
   { path: '/login', component: Login },
-  { path: '/products', component: Products },
+  { path: '/cart', component: Cart },
 ];
 
 const router = createRouter({

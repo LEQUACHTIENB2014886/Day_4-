@@ -1,72 +1,136 @@
-<!-- src/components/Header.vue -->
 <template>
   <el-container>
-    <el-header>
-      <div class="header">
-        <el-row class="nav-container">
-          <el-col :span="8"></el-col> <!-- Phần trống bên trái (8 cột) -->
-          <el-col :span="8" class="nav-item-container">
-            <div class="nav-item">
-              <router-link to="/">Trang chủ</router-link>
-            </div>
-            <div class="nav-item">
-              <router-link to="/products">Sản phẩm</router-link>
-            </div>
-            <div class="nav-item">
-              <router-link to="/login">Đăng nhập</router-link>
-            </div>
-            <div class="nav-item">
-              <router-link to="/contact">Liên hệ</router-link>
-            </div>
-          </el-col> 
-          <el-col :span="8"></el-col> <!-- Phần trống bên phải (8 cột) -->
-        </el-row>
+    <el-header class="header">
+      <div class="header-content">
+        <div class="nav-item">
+          <el-icon>
+            <HomeFilled />
+          </el-icon>
+          <router-link to="/"><span>Trang chủ</span></router-link>
+        </div>
+        <div class="nav-item">
+          <el-icon>
+            <ShoppingCart />
+          </el-icon>
+          <router-link to="/cart"><span>Giỏ hàng</span></router-link>
+
+        </div>
+        <div class="nav-item">
+          <el-icon>
+            <User />
+          </el-icon>
+          <router-link to="/login"><span>Đăng nhập</span></router-link>
+
+        </div>
+        <div class="nav-item">
+          <el-icon>
+            <PhoneFilled />
+          </el-icon>
+          <router-link to="/contact"><span>Liên hệ</span></router-link>
+
+        </div>
+        <div class="search-item">
+          <el-input v-model="searchQuery" placeholder="Nhập từ khóa tìm kiếm" class="input-search">
+            <template #prefix>
+              <el-icon style="color: black;">
+                <Search />
+              </el-icon>
+            </template>
+          </el-input>
+        </div>
       </div>
     </el-header>
   </el-container>
 </template>
 
 <script setup>
-import { ElContainer, ElHeader, ElRow, ElCol } from 'element-plus';
+import { ref } from 'vue';
+import { ElContainer, ElHeader, ElInput, ElIcon } from 'element-plus';
+import { HomeFilled, ShoppingCart, User, PhoneFilled } from '@element-plus/icons-vue';
+import { Search } from '@element-plus/icons-vue';
+
+const searchQuery = ref('');
 </script>
 
 <style scoped>
-.header {
-  background-color: #333;
-  color: white;
-  padding: 15px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.nav-container {
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  width: 100%;
+  background: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.nav-item-container {
+.header-content {
   display: flex;
-  justify-content: space-evenly; /* Căn đều các phần tử */
-  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
+  max-width: 1200px;
 }
 
 .nav-item {
-  text-align: center;
-  margin: 0 15px; /* Thêm khoảng cách giữa các mục */
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
 }
 
-.nav-item a {
-  display: inline-block;
-  padding: 5px 10px;
+.nav-item span {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
   color: white;
-  text-decoration: none;
+  margin-left: 8px;
+  /* Cách chữ và icon ra một chút */
 }
 
-.nav-item a:hover {
+.nav-item:hover {
+  opacity: 0.8;
+}
+
+.nav-item span:hover {
+  color: #888;
+  /* Màu xám tối khi hover */
+  transition: color 0.3s ease-in-out;
+}
+
+.search-item {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.input-search .el-input__inner {
   background-color: #555;
-  color: #00ff99;
+  color: white;
+  transition: all 0.3s ease;
 }
 
-.nav-item a.router-link-active {
-  background-color: #333;
+.input-search .el-input__inner:hover {
+  border-color: white;
+  transform: scale(1.05);
 }
-</style>
+
+.input-search .el-input__inner::placeholder {
+  color: white;
+}
+
+.input-search .el-input__inner:hover::placeholder {
+  color: #aaa;
+}</style>

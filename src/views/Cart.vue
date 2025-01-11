@@ -8,7 +8,7 @@
   
   <script>
   export default {
-    name: 'Product'
+    name: 'cart'
   };
   </script>
   

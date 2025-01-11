@@ -2,15 +2,10 @@
   <el-footer>
     <div class="footer-container">
       <p>&copy; 2025 - Web buôn bán giày dép</p>
-
     </div>
   </el-footer>
 </template>
-  
-<script setup>
-import { ElFooter } from 'element-plus'
-</script>
-  
+
 <style scoped>
 .footer-container {
   background-color: #333;
@@ -22,7 +17,9 @@ import { ElFooter } from 'element-plus'
 .el-footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  left: 0; 
+  width: 100%; 
+  margin: 0;
+  padding: 0;
 }
 </style>
-  
