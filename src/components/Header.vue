@@ -48,9 +48,13 @@
         </router-link>
 
         <div class="search-item">
-          <el-input v-model="searchQuery" placeholder="Nhập từ khóa tìm kiếm" class="input-search">
+          <el-input
+            v-model="searchQuery"
+            placeholder="Nhập từ khóa tìm kiếm"
+            class="input-search"
+          >
             <template #prefix>
-              <el-icon style="color: black;">
+              <el-icon style="color: black">
                 <Search />
               </el-icon>
             </template>
@@ -70,7 +74,7 @@ import {
   User,
   PhoneFilled,
   Fold,
-  Search
+  Search,
 } from "@element-plus/icons-vue";
 
 const searchQuery = ref("");

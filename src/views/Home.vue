@@ -34,7 +34,11 @@
       <el-row :gutter="20">
         <el-col :span="6" v-for="(product, index) in products" :key="index">
           <div class="grid-content">
-            <img :src="product.image" :alt="product.name" class="product-image" />
+            <img
+              :src="product.image"
+              :alt="product.name"
+              class="product-image"
+            />
             <div class="product-details">
               <div class="product-name">{{ product.name }}</div>
               <div class="product-prices">
@@ -56,7 +60,7 @@ import { ref, onMounted } from "vue";
 export default {
   components: {
     ElCarousel,
-    ElCarouselItem
+    ElCarouselItem,
   },
   setup() {
     const images = ref([]);
@@ -89,7 +93,9 @@ export default {
       const difference = targetDate - currentDate;
 
       if (difference > 0) {
-        const hrs = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const hrs = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
         const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const secs = Math.floor((difference % (1000 * 60)) / 1000);
 
@@ -109,7 +115,7 @@ export default {
     });
 
     return { images, products, hours, minutes, seconds };
-  }
+  },
 };
 </script>
 
